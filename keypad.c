@@ -1,3 +1,9 @@
+/*
+ * keypad.c
+ *
+ * Created: 8/5/2025 23:51:32
+ *  Author: Santiago
+ */ 
 #include <avr/io.h>
 #include "keypad.h"
 
@@ -34,7 +40,7 @@ void init_keypad(void) {
 	PORTD |= (1<<3)|(1<<5)|(1<<4)|(1<<2);
 }
 
-uint8_t KepadUpdate(void) {
+uint8_t KeypadUpdate(void) {
 	uint8_t fila, columnas;
 
 	for(fila = 0; fila < 4; fila++) {
@@ -53,7 +59,7 @@ uint8_t KepadUpdate(void) {
 
 uint8_t KEYPAD_Scan(uint8_t *pkey) {
 	static uint8_t Old_key = 0xFF, Last_valid_key = 0xFF;
-	uint8_t Key = KepadUpdate();
+	uint8_t Key = KeypadUpdate();
 
 	if (Key == 0xFF) {
 		Old_key = 0xFF;
